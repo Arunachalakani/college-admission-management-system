@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Receipt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 70%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            flex-basis: 30%;
+            font-weight: bold;
+        }
+
+        .form-group select, 
+        .form-group input {
+            flex-basis: 65%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .left, .right {
+            width: 48%;
+            float: left;
+        }
+
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .fees-group {
+            margin-top: 20px;
+        }
+
+        .fees-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .fees-group input {
+            margin-right: 10px;
+        }
+
+        .result {
+            text-align: right;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .print-btn {
+            display: block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            float: right;
+        }
+
+        .print-btn:hover {
+            background-color: #45a049;
+        }
+
+        .date-time {
+            text-align: right;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Bill Receipt</h1>
+        </div>
+        
+        <!-- Date and Time -->
+        <div class="date-time">
+            <span id="date"></span> <br>
+            <span id="time"></span>
+        </div>
+
+        <!-- Form Left Side -->
+        <div class="left">
+            <div class="form-group">
+                <label for="rollno">Roll No:</label>
+                <input type="text" id="rollno" name="rollno" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="amount">phone:</label>
+                <input type="number" id="amount" name="amount" required>   
+               
+               <!-- <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" required>     -->
+            </div>
+        </div>
+
+        <!-- Form Right Side -->
+        <div class="right">
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <select id="dtype" name="dtype" required>
+                    <option value="Select a Department">Select a Department</option>
+                    <option value="Arts">Arts (Tamil, English, Economics)</option>
+   <!--                 <option value="Science">Science (Computer Science, Maths, Physics, Chemistry, Microbiology, Zoology)</option>  -->
+                  <option value="Science">Science </option>
+                    <option value="Language">Language (BBA, BCom, Wiscom)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="dtment">Department Type:</label>
+                <select id="dtment" name="dtment" required>
+                    <option value="Select a Department Type">Select a Department Type</option>
+                    <option value="Tamil">Tamil</option>
+                    <option value="English">English</option>
+                    <option value="Economics">Economics</option>
+                    <option value="ComputerScience">Computer Science</option>
+                    <option value="Maths">Maths</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Microbiology">Microbiology</option>
+                    <option value="Zoology">Zoology</option>
+                    <option value="BBA">BBA</option>
+                    <option value="BCom">BCom</option>
+                    <option value="Wiscom">Wiscom</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="stype">Shift Type:</label>
+                <select id="stype" name="stype" required>
+                    <option value="Select a Shift Type">Select a Shift Type</option>
+                    <option value="Shift-1">Shift-1</option>
+                    <option value="Shift-2">Shift-2</option>
+                </select>
+            </div>
+        </div>
+         
+         <center>  colledge rate  <button style=" height:30px;  width:150px;"  onclick="check.jsp">     </button></center>
+        
+        
+        <b> Your Opinion Based  </b>
+        
+        <!-- Clearfix -->
+        <div class="clearfix"></div>
+
+        <!-- Fees Selection -->
+        <div class="fees-group">
+            <label><input type="checkbox" id="tution-fee"> Tuition Fees (₹2000)</label>
+            <label><input type="checkbox" id="mess-fee"> Mess Fees (₹2000)</label>
+            <label><input type="checkbox" id="bus-fee"> Bus Fees (₹2000)</label>
+        </div>
+
+        <!-- Total Amount -->
+        <div class="result" id="totalAmount">Total Amount: ₹0</div>
+
+        <!-- Print Button -->
+        <button class="print-btn" onclick="window.print()">Print Receipt</button>
+    </div>
+
+    <script>
+        // Set Date and Time
+        const today = new Date();
+        document.getElementById('date').innerText = 'Date: ' + today.toLocaleDateString();
+        document.getElementById('time').innerText = 'Time: ' + today.toLocaleTimeString();
+
+        // Fee Calculation
+        const tutionFeeCheckbox = document.getElementById('tution-fee');
+        const messFeeCheckbox = document.getElementById('mess-fee');
+        const busFeeCheckbox = document.getElementById('bus-fee');
+        const totalAmountDisplay = document.getElementById('totalAmount');
+
+        function calculateTotal() {
+            let total = 0;
+            if (tutionFeeCheckbox.checked) total += 2000;
+            if (messFeeCheckbox.checked) total += 2000;
+            if (busFeeCheckbox.checked) total += 2000;
+            totalAmountDisplay.innerText = 'Total Amount: ₹' + total;
+        }
+
+        tutionFeeCheckbox.addEventListener('change', calculateTotal);
+        messFeeCheckbox.addEventListener('change', calculateTotal);
+        busFeeCheckbox.addEventListener('change', calculateTotal);
+    </script>
+
+</body>
+</html>

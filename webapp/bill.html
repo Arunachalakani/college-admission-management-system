@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Department</title>
+    <link rel="stylesheet" href="billstyles.css"> <!-- External CSS file -->
+</head>
+<body>
+
+    <div class="container">
+        <!-- Left-side div -->
+        <div class="left-side">
+            <h1>Choose your Department</h1>
+            <form id="departmentForm" action="check" method="post">
+                <label for="department">Department:</label>
+                <select id="dtype" name="dtype" class="dtype" required>
+                    <option value="">Select a Department</option>
+                    <option value="Arts">Arts (Tamil, English, Economics)</option>
+                    <option value="Science">Science</option>
+                    <option value="Language">Language (BBA, BCom, Wiscom)</option>
+                </select>
+                <br>
+         <!--      <input type="hidden" id="totalAmountInput" name="totalamount" value="">  -->
+                <br>
+                <input type="button" value="Submit" onclick="showAlert()" />
+            </form>
+        </div>
+
+        <!-- Right-side div (Tips Section) -->
+        <div class="right-side">
+            <h1>Tips</h1>
+            <p>* You can select only one option.</p>
+            <p>* Once an option is selected, it cannot be changed.</p>
+            <h3>Departments</h3>
+            <ul>
+                <li><strong>Arts (BA)</strong>: Tamil, English, Economics</li>
+                <li><strong>Science (BSC ) </strong>: Maths, Physics, Chemistry, Microbiology, Zoology</li>
+                <li><strong>Language (BBA ,BCOM,  Wiscom ) </strong>: BBA, BCom, Wiscom</li>
+            </ul>
+            <p><center> <h2> <b>All The Best!</b>  </h2>
+             <b> <h1>  Select the option to start your career. </h1> </b>  </center>  </p>
+        </div>
+    </div>
+
+    <!-- Custom Alert Box script -->
+    <script>
+        function showAlert() {
+            const department = document.getElementById('dtype').value;
+
+            if (!department) {
+                alert('Please select a department.');
+                return;
+            }
+
+            // Create a custom alert overlay
+            const customAlert = document.createElement('div');
+            customAlert.classList.add('custom-alert');
+
+            const alertBox = document.createElement('div');
+            alertBox.classList.add('alert-box');
+            alertBox.innerHTML = `
+                <h2>Confirmation</h2>
+                <p>You have selected the <strong>${department}</strong> department.</p>
+                <button onclick="confirmSelection()">OK</button>
+                <button onclick="closeAlert()">Cancel</button>
+            `;
+
+            customAlert.appendChild(alertBox);
+            document.body.appendChild(customAlert);
+
+            window.confirmSelection = function () {
+                document.getElementById('departmentForm').submit(); // Submit the form
+            };
+
+            window.closeAlert = function () {
+                document.body.removeChild(customAlert); // Remove alert overlay
+            };
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<html>
+	<head>
+		<body style="letter-spacing: 3ch;">
+			 <div style="2px solid red" height="180px" width="400px">
+				 
+				 <h1> Tips  </h1>
+				 
+				     * You have selected a only one option.
+				     * Once option is fixed,Otherwise no change the option.
+				     
+				     1.Arts ( BA )
+				        (Tamil,  English,  Economics)
+				        
+				     2.Science
+				        (Maths,Physics,Chemistry,Microbiology,Zoology,)
+				        
+				     3.Language
+				        ( BBA,  BCOM,   WISCOM  )
+				        
+				    <b>    ! All The Best !
+				    
+				        Select the option to Start Your Career  </b> 
+			 </div>
+			
+			
+		</body>
+		
+	</head>
+
+</html>
+
+
+-->
+
+
+<!--
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful Radio Buttons</title>
+    <style>
+        /* Body styling with gradient background */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #ff8a00, #e52e71, #9d50bb);
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* Container to center the form */
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Styling for radio buttons and labels */
+        .radio-label {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: #fff;
+        }
+
+        /* Hover effect for the radio buttons */
+        .radio-label:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+            border-color: #ff6b6b;
+        }
+
+        /* Radio button input styling */
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        /* Submit button styling */
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(45deg, #e52e71, #ff8a00);
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(45deg, #9d50bb, #ff8a00);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Select Your Department</h1>
+        <form id="radioForm">
+            <label class="radio-label">
+                <input type="radio" name="department" value="Arts">
+                Arts (Tamil, English, Economics)
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="department" value="Science">
+                Science
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="department" value="Language">
+                Language (BBA, BCom, Wiscom)
+            </label>
+
+            <button type="button" class="submit-btn" onclick="showAlert()">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function showAlert() {
+            const radios = document.getElementsByName('department');
+            let selectedValue = '';
+
+            for (const radio of radios) {
+                if (radio.checked) {
+                    selectedValue = radio.value;
+                    break;
+                }
+            }
+
+            if (selectedValue === '') {
+                alert('Please select a department.');
+                return;
+            }
+
+            // Create a custom alert with background image
+            const customAlert = document.createElement('div');
+            customAlert.style.position = 'fixed';
+            customAlert.style.top = '0';
+            customAlert.style.left = '0';
+            customAlert.style.width = '100%';
+            customAlert.style.height = '100%';
+            customAlert.style.background = 'rgba(0, 0, 0, 0.7)';
+            customAlert.style.zIndex = '1000';
+            customAlert.style.display = 'flex';
+            customAlert.style.alignItems = 'center';
+            customAlert.style.justifyContent = 'center';
+
+            const alertBox = document.createElement('div');
+            alertBox.style.padding = '30px';
+            alertBox.style.background = 'linear-gradient(45deg, #ff8a00, #e52e71)';
+            alertBox.style.borderRadius = '10px';
+            alertBox.style.boxShadow = '0px 10px 20px rgba(0, 0, 0, 0.5)';
+            alertBox.style.color = '#fff';
+            alertBox.innerHTML = `
+                <h2>Confirmation</h2>
+                <p>You have selected the <strong>${selectedValue}</strong> department.</p>
+                <button onclick="confirmSelection()">Confirm</button>
+                <button onclick="closeAlert()">Cancel</button>
+            `;
+
+            customAlert.appendChild(alertBox);
+            document.body.appendChild(customAlert);
+
+            window.confirmSelection = function () {
+                alert('Selection Confirmed!');
+                document.body.removeChild(customAlert);
+            };
+
+            window.closeAlert = function () {
+                document.body.removeChild(customAlert);
+            };
+        }
+    </script>
+
+</body>
+</html>
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Select Department</title>
+</head>
+<body>
+    <style>
+        .dtype {
+            border: 2px solid salmon;
+            background-color: greenyellow;
+            color: red;
+            height: 40px;
+            width: 400px;
+        }
+        
+        #dtype {
+            border: 2px solid salmon;
+            background-color: greenyellow;
+            color: red;
+            height: 40px;
+            width: 400px;
+        }
+    </style>
+
+    <div class="form-group">
+        <form id="departmentForm" action="check" method="post">
+            <label for="department">Department:</label>
+            <select id="dtype" name="dtype" class="dtype" required>
+                <option value="">Select a Department</option>
+                <option value="Arts">Arts (Tamil, English, Economics)</option>
+                <option value="Science">Science</option>
+                <option value="Language">Language (BBA, BCom, Wiscom)</option>
+            </select>
+            <br><br>
+            <input type="button" value="Submit" onclick="showAlert()" />
+        </form>
+    </div>
+
+    <script>
+        function showAlert() {
+            const department = document.getElementById('dtype').value;
+
+            if (!department) {
+                alert('Please select a department.');
+                return;
+            }
+
+            // Confirm box with OK and Cancel buttons
+            let confirmMessage = `You have selected ${department}. Do you want to proceed?`;
+            let isConfirmed = confirm(confirmMessage);
+
+            if (isConfirmed) {
+                // If the user clicks "OK", submit the form
+                document.getElementById('departmentForm').submit();
+            } else {
+                // If the user clicks "Cancel", do nothing (stay on the page)
+                alert("Submission cancelled.");
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+-->
+
+
+
+
+
+
+
+<!--
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Select Department</title>
+</head>
+<body>
+    <style>
+        .dtype {
+            border: 2px solid salmon;
+            background-color: greenyellow;
+            color: red;
+            height: 40px;
+            width: 400px;
+        }
+        
+        #dtype {
+            border: 2px solid salmon;
+            background-color: greenyellow;
+            color: red;
+            height: 40px;
+            width: 400px;
+        }
+    </style>
+
+    <div class="form-group">
+        <form id="departmentForm" action="check" method="post">
+            <label for="department">Department:</label>
+            <select id="dtype" name="dtype" class="dtype" required>
+                <option value="">Select a Department</option>
+                <option value="Arts">Arts (Tamil, English, Economics)</option>
+                <option value="Science">Science</option>
+                <option value="Language">Language (BBA, BCom, Wiscom)</option>
+            </select>
+            <br><br>
+            <input type="button" value="Submit" onclick="showAlert()" />
+        </form>
+    </div>
+
+    <script>
+        function showAlert() {
+            const department = document.getElementById('dtype').value;
+
+            if (!department) {
+                alert('Please select a department.');
+                return;
+            }
+
+            // Alert with department-specific message
+            switch (department) {
+                case 'Arts':
+                    alert('You have selected Arts.');
+                    break;
+                case 'Science':
+                    alert('You have selected Science.');
+                    break;
+                case 'Language':
+                    alert('You have selected Language.');
+                    break;
+                default:
+                    alert('Invalid selection.');
+                    return;
+            }
+
+            // After alert, submit the form
+            document.getElementById('departmentForm').submit();
+        }
+    </script>
+</body>
+</html>
+
+
+
+-->
+
+
+
+
+<!--
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<style>
+		.dtype{
+			border: 2px salmon;
+			background-color: greenyellow;
+			color: red;
+			height: 400px;
+			width: 400px;
+		}
+		
+		#dtype{
+			border: 2px salmon;
+			background-color: greenyellow;
+			color: red;
+			height: 400px;
+			width: 400px;
+		}
+			
+		
+		
+	</style>
+
+
+<div class="form-group">
+	<form action="check" method="post >
+	
+                    <label for="department">Department:</label>
+                    <select id="dtype" name="dtype" required>
+                        <option value="">Select a Department</option>
+                        <option value="Arts">Arts (Tamil, English, Economics)</option>
+                        <option value="Science">Science</option>
+                        <option value="Language">Language (BBA, BCom, Wiscom)</option>
+                    </select>
+                </div>
+
+ <input type="submit" > 
+</body>
+</html>
+
+
+
+-->

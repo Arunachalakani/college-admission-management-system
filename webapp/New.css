@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+
+/* Styling the table */
+table {
+    margin: 30px auto;
+    border-collapse: collapse;
+    width: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Table border */
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+/* Table header background with gradient and font styles */
+th {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Table cell styling */
+td {
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Alternate row colors for better readability */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+    background-color: #eaf3fa;
+}
+
+/* Hover effect for rows */
+tr:hover {
+    background-color: #c8e6f5;
+    cursor: pointer;
+}
+
+/* Styling the body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Centering the table title */
+h2 {
+    text-align: center;
+    color: #0072ff;
+}
+
+/* Add some styling to the center element */
+center {
+    margin: 10px;
+}
+

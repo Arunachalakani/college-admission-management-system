@@ -1,0 +1,450 @@
+<%@ page import="java.sql.* " %>
+<%@ page import="examfees.DBConnection" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8" %>
+
+  
+  
+  
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission Form Details Management</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+ -->
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        /* General Reset */
+        body, h1, h2, h3, p, ul {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+         .home-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 250px;
+            background-color: #34495e;
+            color: #ecf0f1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            width: 100%;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #2980b9;
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: darkred;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Form Styling */
+        .form-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .form-box {
+            background-color: lightgoldenrodyellow;
+            padding: 20px;
+            border-radius: 10px;
+            flex-basis: 45%;
+            text-align: center;
+        }
+
+        .form-box input[type="text"],
+        .form-box input[type="password"],
+        .form-box input[type="email"],
+        .form-box input[type="button"],
+        .form-box input[type="reset"] {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        .form-box input[type="button"] {
+            background-color: lightskyblue;
+            cursor: pointer;
+        }
+
+        .form-box input[type="button"]:hover {
+            background-color: #87ceeb;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+        
+         /* Cards Styling */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-1 {
+            background-color: #e74c3c;
+            color: #fff;
+            border-radius: 50px;
+        }
+
+        .card-2 {
+            background-color: #27ae60;   
+            color: #fff;
+    }
+            
+        
+
+        .card-3 {
+            background-color: #f39c12;
+            color: #fff;
+        }
+
+        .card-4 {
+            background-color: #2980b9;
+            color: #fff;
+        }
+        
+        
+  
+
+        .logout-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 20px;
+        }
+
+        .logout-container i {
+            color: red;
+            margin-right: 10px;
+        }
+
+        .logout-container a {
+            color: black;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .logout-container a:hover {
+            color: red;
+        }
+
+        
+        
+        
+        
+
+        footer {
+            background-color: skyblue;
+            text-align: center;
+            color: darkred;
+            height: 40px;
+            padding: 30px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li><a href="HomePage.html">Home</a></li>
+            <li><a href="StudentDetails.html">Student Details</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="departmentfeesfixed.html">Department</a></li>
+            <li><a href="staffDetails.html">Staff Details</a></li>
+            <li><a href="payment.jsp">Payments</a></li>
+            <li><a href="index.html">Fees Payment</a></li>
+            <li><a href="loginpagesample.html">Login</a></li>
+            <li><a href="bill.html">Bill Page and Receipt</a></li> 
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Admission Fees Details Management</h1>
+        </div>
+        
+ <!-- Logout Section -->
+        <div class="logout-container">
+            <a href="logout.jsp" title="Logout"> <!-- Link to logout page or script -->
+                <i class="fas fa-power-off" style="font-size:24px;"></i>Logout
+            </a>
+        </div>
+                 
+        
+        
+        <a href="loginpagesample.html">
+    <input type="button" class="home-button" value="Logout">
+</a>
+<br>
+   
+   <%  
+   
+    int student=0;
+   try{ 
+     Connection conn=DBConnection.getConnection();
+       String query="select count(id) from feescomplete";
+       preparedStatement pst=conn.prepareStatement(query);
+       ResultSet rs=pst.executeQuery();
+       rs.next();
+       student=pst.getInt(1);
+       }
+       catch( Exception e){
+		   e.printStackTrace();
+	   }
+
+%>
+        <div class="form-container">
+            <div class="cards">
+                <div class="card card-1">
+                    <h3>Students</h3>
+                    <p> student    30<c/p>             
+<button onclick="window.location.href='stu.jsp'">Go to Fill Page</button>                           
+                </div>
+                <div class="card card-2">
+                    <h3>Bus</h3>
+                    <p>20</p>
+                    <button onclick="window.location.href='Buss.jsp'">Go to Fill Page</button>   
+                </div>
+                <div class="card card-3">
+                    <h3>Mess</h3>
+                    <p>20</p>
+<button onclick="window.location.href='Mess.jsp'">Go to Fill Page</button>   
+                </div>
+                
+                 <div class="card card-4">
+                    <h3>Tution</h3>
+                    <p>20</p>
+<button onclick="window.location.href='tut.jsp'">Go to Fill Page</button>                      
+                </div>
+        </div>    
+
+        </div>
+
+        <footer>
+            <h1></h1>
+        </footer>
+    </div>
+
+    <script type="text/javascript">
+        function log() {
+            var b = parseInt(document.getElementById("id").value);
+            if (b == 11) {
+                alert("Login Successfully");
+            } else {
+                alert("Login not Successful");
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admission Form Details Management</title>
+    	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body bgcolor="skyblue" style="margin: 0; padding: 0;">
+
+
+<form action="SIGNUP.html" method="post">
+    <h1 style="color: darkred; text-align: center;padding-top: 20px;">ADMISSION FORM DETAILS MANAGEMENT</h1>
+
+    <div style="border: none; background-color: lightblue; height: 50px;">
+      <h3>  <pre><br>			 <a href="HomePage.html" style="margin-left: 20px;">HOME</a>  <a href="StudentDetails.html">Student Details</a>  <a href="aboutus.html">About Us</a>  <a href="departmentfeesfixed.html">Department</a>    <a href="staffDetails.html">Staff Details</a>            <a href="payment.jsp">PAYMENTS  </a>                  <a href="index.html">  FEES PAYMENT </a>  <a href="loginpagesample.html"> LOGIN </a> </pre> </h3>
+    </div>
+
+    <div style="display: flex;"> 
+
+        <div style="border: 2px solid rgb(23, 45, 78);background-color: lightskyblue; height: 300; width: 200; margin-left: 20px; text-align: center;background-color: lightgoldenrodyellow; border-radius: 50px;margin-left: 200px; color: rgba(35, 20, 35, 1.0); padding-top: 20px; margin-top: 40px;padding-right: 30px;padding-left: 30px; display: inline-block;"><br><br>
+            NAME* <input style="background-color: lightskyblue; border: none; border-radius: 10px; height: 30px" type="text" name="na" placeholder="Enter Your Name" required/><br><br><br>
+            USER ID* <input style="background-color: lightskyblue; border: none; border-radius: 10px; height: 30px" type="password"name="id" placeholder="Enter Your User_ID" required/><br><br><br>
+            E_MAIL* <input style="background-color: lightskyblue; border: none; border-radius: 10px; height: 30px" type="email" name="mail" placeholder="Enter Your MailID" required/><br>
+            <a href="forgetpassword.html"> ForgetPassword </a> <br><br>
+            <input style="background-color: lightskyblue; border: none; border-radius: 10px; padding-left: 10px; height: 30px;" type="button" value="LOGIN" onclick="log()">
+            <input style="background-color: lightskyblue; border: none; border-radius: 10px; height: 30px;" type="button" value="SIGNUP" onclick="loginpagesample">
+            <input style="background-color: lightskyblue; border: none; border-radius: 10px; height: 30px;" type="reset" value="CANCEL">
+       <br>   
+             <p>     Login and signin with google        </p><br>
+             <i style="margin-left: 20px;" class='bx bxl-facebook-circle'></i>
+             <box-icon type='logo' name='facebook-circle'></box-icon>
+
+             <i class='bx bxl-google'></i>
+             <box-icon type='logo' name='google'></box-icon>
+
+             <i class='bx bxl-github'></i>
+             <box-icon type='logo' name='github'></box-icon>
+   </div>
+
+        <br><div style="border: none; margin-top: 30px; margin-left: 20px; padding-left:20px; padding-right: 20px; padding-top: 30px; height: 70%; width: 50%; background-color: lightblue;">
+            <img style="display: inline-block;" src="guvi.jpg" height="100%" width="100%">
+        </div>
+        <footer>  </footer>
+
+    </div>
+  <footer style="background-color: skyblue; text-align: center; color: darkred; height: 40px; padding: 30px; margin-bottom: 30px; padding-bottom: 20px;">  <h1>   CREATED BY - 2024    </h1><br>        </footer>
+</form>
+
+<script type="text/javascript">
+function log()
+{
+   var b=Integer.parseInt(document.getElementById("id"));
+   if(b==11){
+   	  alert("Login Sucessfully");
+   }else{
+      alert(" login not Sucessfully ");
+   }
+
+ 
+}
+
+
+
+log();
+</script>
+</body>
+
+</html>
+
+
+
+
+/////     Normal  Login Page  code  start
+
+
+<div class="form-box">
+                <h3>Login Form</h3>
+                <form action="SIGNUP.html" method="post">
+                    NAME* <input type="text" name="na" placeholder="Enter Your Name" required /><br />
+                    USER ID* <input type="password" name="id" placeholder="Enter Your User_ID" required /><br />
+                    E_MAIL* <input type="email" name="mail" placeholder="Enter Your MailID" required /><br />
+                    <a href="forgetpassword.html">Forget Password?</a><br /><br />
+                    <input type="button" value="LOGIN" onclick="log()">
+                    <input type="button" value="SIGNUP" onclick="location.href='SIGNUP.html'">
+                    <input type="reset" value="CANCEL"><br />
+                    <p>Login and sign in with:</p><br />
+                    <i class='bx bxl-facebook-circle' style="font-size: 30px;"></i>
+                    <i class='bx bxl-google' style="font-size: 30px; margin-left: 20px;"></i>
+                    <i class='bx bxl-github' style="font-size: 30px; margin-left: 20px;"></i>
+                </form>
+            </div>
+
+
+///        Normal login page  code  end
+
+
+
+
+
+-->

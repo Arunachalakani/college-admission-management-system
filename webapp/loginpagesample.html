@@ -1,0 +1,344 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+
+    <script>
+        function validateLogin(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const message = document.getElementById('message');
+
+            if (username === 'admin' && password === '123') {
+                // Set a flag in the session to indicate the user is logged in
+                fetch('SetSession.jsp')
+                    .then(() => {
+                        window.location.href = "HomePage.jsp"; // Redirect to the home page
+                    })
+                    .catch((error) => {
+                        message.textContent = 'Error logging in. Please try again.';
+                        message.style.color = 'red';
+                    });
+            } else {
+                message.textContent = 'Invalid username or password.';
+                message.style.color = 'red';
+            }
+        }
+    </script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0, #fbc2eb, #a6c1ee);
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #message {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .abc{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			color: crimson;
+		}
+    </style>
+
+</head>
+<body>
+	<div class="abc">
+	<nav>
+    <center>   <h1>ADMISSION MANAGEMENT SYSTEM</h1>  </center>
+    </nav>
+	
+    <div class="login-container">
+        <h2>Login</h2>
+        <form onsubmit="validateLogin(event)">
+            <div style="margin-bottom: 15px;">
+                <label for="username" style="display: block; margin-bottom: 5px;">Username:</label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="password" style="display: block; margin-bottom: 5px;">Password:</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div style="text-align: center;">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+        <p id="message"></p>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script>
+        function validateLogin(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const message = document.getElementById('message');
+
+            if (username === 'admin' && password === '123') {
+				window.location.href="HomePage.jsp";
+                message.textContent = 'Login successful!';
+                message.style.color = 'green';
+            } else {
+                message.textContent = 'Invalid username or password.';
+                message.style.color = 'red';
+            }
+        }
+    </script>
+    <style>
+        body {
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0, #fbc2eb, #a6c1ee); /* Colorful gradient background */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form onsubmit="validateLogin(event)">
+            <div style="margin-bottom: 15px;">
+                <label for="username" style="display: block; margin-bottom: 5px;">Username:</label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="password" style="display: block; margin-bottom: 5px;">Password:</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div style="text-align: center;">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+        <p id="message"></p>
+    </div>
+</body>
+</html>
+
+
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script>
+        function validateLogin(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const message = document.getElementById('message');
+
+            if (username === 'admin' && password === '123') {
+				window.location.href="HomePage.html";
+                message.textContent = 'Login successful!';
+                message.style.color = 'green';
+            } else {
+                message.textContent = 'Invalid username or password.';
+                message.style.color = 'red';
+            }
+        }
+    </script>
+</head>
+<body style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f0f0f0; margin: 0;">
+    <div style="background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 300px;">
+        <h2 style="text-align: center; margin-bottom: 20px;">Login</h2>
+        <form onsubmit="validateLogin(event)">
+            <div style="margin-bottom: 15px;">
+                <label for="username" style="display: block; margin-bottom: 5px;">Username:</label>
+                <input type="text" id="username" name="username" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="password" style="display: block; margin-bottom: 5px;">Password:</label>
+                <input type="password" id="password" name="password" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <div style="text-align: center;">
+                <button type="submit" style="background-color: #007BFF; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Login</button>
+            </div>
+        </form>
+        <p id="message" style="text-align: center; margin-top: 20px;"></p>
+    </div>
+</body>
+</html>
+
+
+-->
+
+
+
+
+
+
+<!--
+
+<!DOCTYPE html>
+<html style=" background-image: url('car.jfif') ">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+		
+	</title>
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+      <marquee> <i style="color: white; text-decoration: center; font-weight: 600px;">  Home  </i> </marquee>
+<body><center>     
+	<div style="background:purple;color: #fff; height: 300px; width: 300px; border-radius: 30px;margin-top:150px ; padding-top: 20px;">
+	<h1 onfocus="30">   Login  Page  </h1>
+
+	<input style="position: relative;" type="text"  name="na" placeholder="username" height="30px" width="30px"  required><i class='bx bxs-user-circle'  position='absolute' right='20px'></i><br><br>
+    
+    <input style="position: relative;" type="password"  name="pa"  placeholder="password" required><i class='bx bxs-lock-alt'  position='absolute' right='20px' p></i><br><br>
+  
+    <input type="checkbox"><label style=" color: white; text-decorations: none; ">Remember me</label><a href="forgetpassword.html" style="
+    color: white; text-decorations: none ; margin-left: 30px; font-weight: 600; text-decoration: underline; "> Forget Password </a><br>
+    <wbr>
+   
+    <div style="background-color:white;color: black;border-radius: 20px;padding-top: 10px; height: 30px;width: 260px; padding-left:5px;">
+     Login</div><br>   
+     <input type="submit" onclick="log()" > 
+     
+    <label style=" color: white; text-decorations: none; hover: 200px; margin-left: 30px;">  Don't have an Account?</label>     <a href=# 
+    style=" color: white; text-decorations: none; hover: 200px; margin-left: 30px; font-weight: 600;"> Register</a>    
+   </div>
+
+ 
+
+   <i style="color:white;" class='bx bxs-like bx-spin-hover' ></i>  
+   <i style="color:white;" class='bx bxs-like bx-tada-hover'></i>
+<i style="color:white;" class='bx bxs-like bx-flashing-hover'></i>
+<i style="color:white;" class='bx bxs-like bx-burst-hover'></i>
+<i style="color:white;" class='bx bxs-like bx-fade-left-hover'></i>
+<i style="color:white;" class='bx bxs-like bx-fade-right-hover'></i>
+<i  class='bx bxs-like bx-fade-up-hover'></i>
+<i class='bx bxs-like bx-fade-down-hover'></i>
+
+<i  class='bx bxs-like bx-spin-hover'></i>
+
+
+<box-icon  name='heart' animation='tada-hover'></box-icon>
+
+</center></body>
+</html>
+   -->

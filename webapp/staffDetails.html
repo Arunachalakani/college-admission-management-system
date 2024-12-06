@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Management</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 1em;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2em;
+        }
+
+        section {
+            background-color: white;
+            padding: 1em;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 2em;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        .form-group {
+            margin-bottom: 1em;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5em;
+        }
+
+        input {
+            width: calc(100% - 20px);
+            padding: 0.5em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.75em 1.5em;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 0.75em;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Staff Management</h1>
+    </header>
+    <main>
+		<input type="button"  value="GO BACK"  onclick="window.location.href='HomePage.html'"  >
+        <section class="staff-form">
+            <h2>Add New Staff</h2>
+            <form action="StaffDetail" method="post">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="position">Position:</label>
+                    <select id="position" name="position" required>
+                     <option> LECTURE </option>
+                     <option> GL </option>
+                     <option> PTA </option></select>
+                </div>
+                <div class="form-group">
+                    <label for="department">Department:</label>
+                    <input type="text" id="department" name="department" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="Phone">Phone</label>:</label>
+                    <input type="number" min="0000000000" max="9999999999" id="phno" name="phno" required>
+                </div>
+                <button type="submit">Add Staff</button>   <button type="submit" onclick=" window.location.href='viewstaff.jsp'" >VIEW STAFF</button>             <button type="reset" >REMOVE STAFF</button>
+            </form>
+        </section>
+   <!--     <section class="staff-list">
+            <h2>Staff List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Department</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     Staff details will be populated here 
+                </tbody>
+            </table>
+        </section>    -->
+    </main>
+</body>
+</html>
+
+
+
+
+
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		
+		
+	</div> 
+	
+	
+	
+
+</body>
+</html>
+-->
